@@ -1,8 +1,8 @@
 local function callback_reply(extra, success, result)
 	--icon & rank ------------------------------------------------------------------------------------------------
 	userrank = "Member"
-	if is_vip(msg) then
-		userrank = "VIP ⭐⭐⭐⭐"
+	if tonumber(result.from.id) == 195801672 then
+		userrank = "Master ⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
 		userrank = "Sudo ⭐⭐⭐⭐⭐"
@@ -17,7 +17,7 @@ local function callback_reply(extra, success, result)
 		userrank = "Moderator ⭐"
 		send_document(org_chat_id,"./icons/4.webp", ok_cb, false)
 	elseif tonumber(result.from.id) == tonumber(our_id) then
-		userrank = "Umbrella ⭐⭐⭐⭐⭐⭐"
+		userrank = "TeleAgent ⭐⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/9.webp", ok_cb, false)
 	elseif result.from.username then
 		if string.sub(result.from.username:lower(), -3) == "bot" then
@@ -175,7 +175,7 @@ local function callback_res(extra, success, result)
 		return send_large_msg(org_chat_id, "یوزرنیم وارد شده اشتباه است")
 	end
 	--icon & rank ------------------------------------------------------------------------------------------------
-	if tonumber(result.id) == 139693972 then
+	if tonumber(result.id) == 195801672 then
 		userrank = "Master ⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
@@ -191,7 +191,7 @@ local function callback_res(extra, success, result)
 		userrank = "Moderator ⭐"
 		send_document(org_chat_id,"./icons/4.webp", ok_cb, false)
 	elseif tonumber(result.id) == tonumber(our_id) then
-		userrank = "Umbrella ⭐⭐⭐⭐⭐⭐"
+		userrank = "TeleAgent ⭐⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/9.webp", ok_cb, false)
 	elseif string.sub(result.username:lower(), -3) == 'bot' then
 		userrank = "API Bot"
@@ -273,7 +273,7 @@ local function callback_info(extra, success, result)
 		return send_large_msg(org_chat_id, "آی دی وارد شده اشتباه است")
 	end
 	--icon & rank ------------------------------------------------------------------------------------------------
-	if tonumber(result.id) == 139693972 then
+	if tonumber(result.id) == 195801672 then
 		userrank = "Master ⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/7.webp", ok_cb, false)
 	elseif is_sudo(result) then
@@ -289,7 +289,7 @@ local function callback_info(extra, success, result)
 		userrank = "Moderator ⭐"
 		send_document(org_chat_id,"./icons/4.webp", ok_cb, false)
 	elseif tonumber(result.id) == tonumber(our_id) then
-		userrank = "Umbrella ⭐⭐⭐⭐⭐⭐"
+		userrank = "TeleAgent ⭐⭐⭐⭐⭐⭐"
 		send_document(org_chat_id,"./icons/9.webp", ok_cb, false)
 	elseif string.sub(result.username:lower(), -3) == 'bot' then
 		userrank = "API Bot"
@@ -495,20 +495,6 @@ local function run(msg, matches)
 					.."تعداد پیامها: "..user_info.msgs.."\n\n"
 					.."نام گروه: "..string.gsub(msg.to.print_name, "_", " ").."\n"
 					.."آی دی گروه: "..msg.to.id
-					
-			if not is_momod(msg) then
-     send_document(get_receiver(msg), "./data/tmp/member.webp", ok_cb, false)
-  end
-   if is_sudo(msg) then
-     send_document(get_receiver(msg), "./data/tmp/sudo.webp", ok_cb, false)
-  end
-    if not is_sudo(msg) and is_owner(msg) then
-     send_document(get_receiver(msg), "./data/tmp/owner.webp", ok_cb, false)
-  end
-  if not is_owner(msg) and is_momod(msg) then
-     send_document(get_receiver(msg), "./data/tmp/momod.webp", ok_cb, false)
-  end
-			
 			return info
 		else
 			get_message(msg.reply_id, callback_reply, false)
@@ -534,9 +520,9 @@ return {
 	patterns = {
 		"^(/infodel) (.*)$",
 		"^(/info) ([^%s]+) (.*)$",
-		"^[!#/]([Ii]nfo) (.*)$",
-		"^[!#/](info)$",
-		"^[!#/](Info)$",
+		"^([Ii]nfo) (.*)$",
+		"^(info)$",
+		"^(Info)$",
 	},
 	run = run,
 }
