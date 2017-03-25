@@ -230,14 +230,7 @@ function create_config( )
     "language",
     "whitelist",
     "tools",
-"aparat",
-"azan",
-"joke",
-"bing",
-"map",
-"maps",
-"time",
-"linkpv",
+
     },
     vip_users = {}, --vip users
     sudo_users = {(293835020)},(293835020)
