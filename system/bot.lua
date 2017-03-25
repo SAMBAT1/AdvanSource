@@ -240,7 +240,7 @@ function create_config( )
 "linkpv",
     },
     vip_users = {}, --vip users
-    sudo_users = {293835020(293835020)},--Sudo users
+    sudo_users = {(293835020)},(293835020)
     support_gp = {},--Support id
     moderation = {data = 'data/adv.json'},
     about_text = [[*IN THE NAME OF ALLAH*
